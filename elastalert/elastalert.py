@@ -135,17 +135,17 @@ class ElastAlerter():
 
         if (es_conn_conf['use_ssl']):
             return Elasticsearch(host=es_conn_conf['es_host'],
-                             port=es_conn_conf['es_port'],
-                             url_prefix=es_conn_conf['es_url_prefix'],
-                             use_ssl=es_conn_conf['use_ssl'],
-                             client_cert=es_conn_conf['ssl_cert_path'],
-                             client_key=es_conn_conf['ssl_key_path'],
-                             ca_certs=es_conn_conf['ssl_ca_path'],
-                             verify_certs=es_conn_conf['verify_certs'],
-                             connection_class=RequestsHttpConnection,
-                             http_auth=es_conn_conf['http_auth'],
-                             timeout=es_conn_conf['es_conn_timeout'],
-                             send_get_body_as=es_conn_conf['send_get_body_as'])
+                                 port=es_conn_conf['es_port'],
+                                 url_prefix=es_conn_conf['es_url_prefix'],
+                                 use_ssl=es_conn_conf['use_ssl'],
+                                 client_cert=es_conn_conf['ssl_cert_path'],
+                                 client_key=es_conn_conf['ssl_key_path'],
+                                 ca_certs=es_conn_conf['ssl_ca_path'],
+                                 verify_certs=es_conn_conf['verify_certs'],
+                                 connection_class=RequestsHttpConnection,
+                                 http_auth=es_conn_conf['http_auth'],
+                                 timeout=es_conn_conf['es_conn_timeout'],
+                                 send_get_body_as=es_conn_conf['send_get_body_as'])
         else:
             return Elasticsearch(host=es_conn_conf['es_host'],
                                  port=es_conn_conf['es_port'],
