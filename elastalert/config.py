@@ -156,6 +156,10 @@ def load_options(rule, conf, args=None):
         rule.setdefault('es_url_prefix', conf.get('es_url_prefix'))
     if 'use_ssl' in conf:
         rule.setdefault('use_ssl', conf.get('use_ssl'))
+        rule.setdefault('ssl_cert_path', conf.get('ssl_cert_path'))
+        rule.setdefault('ssl_key_path', conf.get('ssl_key_path'))
+        rule.setdefault('ssl_ca_path', conf.get('ssl_ca_path'))
+        rule.setdefault('verify_certs', conf.get('verify_certs'))
 
     # Set timestamp_type conversion function, used when generating queries and processing hits
     rule['timestamp_type'] = rule['timestamp_type'].strip().lower()
