@@ -137,7 +137,7 @@ def load_options(rule, conf, args=None):
     rule.setdefault('realert', datetime.timedelta(seconds=0))
     rule.setdefault('aggregation', datetime.timedelta(seconds=0))
     rule.setdefault('query_delay', datetime.timedelta(seconds=0))
-    rule.setdefault('timestamp_field', '@timestamp')
+    rule.setdefault('timestamp_field', conf.get('timestamp_field'))
     rule.setdefault('filter', [])
     rule.setdefault('timestamp_type', 'iso')
     rule.setdefault('timestamp_format', '%Y-%m-%dT%H:%M:%SZ')
