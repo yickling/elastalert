@@ -23,7 +23,19 @@ es_port: 9200
 #es_url_prefix: elasticsearch
 
 # Connect with SSL to elasticsearch
-#use_ssl: True
+use_ssl: True
+
+# SSL cert
+ssl_cert_path: /etc/ssl/certs/ea.crt
+
+# SSL key
+ssl_key_path: /etc/ssl/ea.key
+
+# CA cert
+ssl_ca_path: /etc/ssl/certs/ca.crt
+
+# Will verify certs?
+verify_certs: False
 
 # GET request with body is the default option for Elasticsearch. 
 # If it fails for some reason, you can pass 'GET', 'POST' or 'source'.
