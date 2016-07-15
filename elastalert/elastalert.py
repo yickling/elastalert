@@ -133,7 +133,8 @@ class ElastAlerter():
                                          aws_region=es_conn_conf['aws_region'],
                                          boto_profile=es_conn_conf['boto_profile'])
 
-        return Elasticsearch(host=es_conn_conf['es_host'],
+        if (es_conn_conf['use_ssl']):
+            return Elasticsearch(host=es_conn_conf['es_host'],
                              port=es_conn_conf['es_port'],
                              url_prefix=es_conn_conf['es_url_prefix'],
                              use_ssl=es_conn_conf['use_ssl'],
@@ -145,6 +146,15 @@ class ElastAlerter():
                              http_auth=es_conn_conf['http_auth'],
                              timeout=es_conn_conf['es_conn_timeout'],
                              send_get_body_as=es_conn_conf['send_get_body_as'])
+        else:
+            return Elasticsearch(host=es_conn_conf['es_host'],
+                                 port=es_conn_conf['es_port'],
+                                 url_prefix=es_conn_conf['es_url_prefix'],
+                                 use_ssl=es_conn_conf['use_ssl'],
+                                 connection_class=RequestsHttpConnection,
+                                 http_auth=es_conn_conf['http_auth'],
+                                 timeout=es_conn_conf['es_conn_timeout'],
+                                 send_get_body_as=es_conn_conf['send_get_body_as'])
 
     @staticmethod
     def build_es_conn_config(conf):
