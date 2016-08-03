@@ -25,7 +25,7 @@ def main():
     parser.add_argument('--cert', default=None, help='SSL certificate path')
     parser.add_argument('--key', default=None, help='SSL key path')
     parser.add_argument('--ca', default=None, help='SSL CA certificate path')
-    parser.add_argument('--verify-ssl', default=None, help='Verify SSL keys')
+    parser.add_argument('--verify-certs', default=None, help='Verify SSL certs')
     parser.add_argument('--no-ssl', dest='ssl', action='store_false', help='Do not use SSL')
     parser.add_argument('--index', help='Index name to create')
     parser.add_argument('--old-index', help='Old index name to copy')
@@ -53,7 +53,7 @@ def main():
         cert = args.cert if args.cert is not None else data.get('cert')
         key = args.key if args.key is not None else data.get('key')
         ca = args.ca if args.ca is not None else data.get('ca')
-        verify_ssl = args.verify_ssl if args.verify_ssl is not None else data.get('verify_ssl')
+        verify_certs = args.verify_certs if args.verify_certs is not None else data.get('verify_certs')
         aws_region = data.get('aws_region', None)
         send_get_body_as = data.get('send_get_body_as', 'GET')
     else:
@@ -69,7 +69,7 @@ def main():
             cert = args.cert if args.cert is not None else raw_input('Enter SSL certificate path: ')
             key = args.key if args.key is not None else raw_input('Enter SSL key path: ')
             ca = args.ca if args.ca is not None else raw_input('Enter SSL CA certificate path: ')
-            verify_ssl = (args.verify_ssl if args.verify_ssl is not None else raw_input('Verify SSL certificates? t/f: ').lower() in ('t', 'true'))
+            verify_certs = (args.verify_certs if args.verify_certs is not None else raw_input('Verify SSL certificates? t/f: ').lower() in ('t', 'true'))
 
         if args.no_auth is None:
             username = raw_input('Enter optional basic-auth username: ')
@@ -93,7 +93,7 @@ def main():
             client_cert=cert,
             client_key=key,
             ca_certs=ca,
-            verify_certs=verify,
+            verify_certs=verify_certs,
             connection_class=RequestsHttpConnection,
             http_auth=http_auth,
             url_prefix=url_prefix,
