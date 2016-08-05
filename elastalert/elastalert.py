@@ -1065,7 +1065,7 @@ class ElastAlerter():
         query = {'query': {'query_string': {'query': '!_exists_:aggregate_id AND alert_sent:false'}},
                  'filter': {'range': {'alert_time': {'from': dt_to_ts(ts_now() - time_limit),
                                                      'to': dt_to_ts(ts_now())}}},
-                 'sort': {'alert_time': {'order': 'asc'}}}
+                 'sort': {'alert_time': {'unmapped_type': 'long', 'order': 'asc'}}}
         if self.writeback_es:
             try:
                 res = self.writeback_es.search(index=self.writeback_index,
@@ -1156,7 +1156,7 @@ class ElastAlerter():
                                               {'range': {'alert_time': {'gt': ts_now()}}},
                                               {'not': {'exists': {'field': 'aggregate_id'}}},
                                               {'term': {'alert_sent': 'false'}}]}},
-                 'sort': {'alert_time': {'order': 'desc'}}}
+                 'sort': {'alert_time': {'unmapped_type': 'long', 'order': 'desc'}}}
         if not self.writeback_es:
             self.writeback_es = self.new_elasticsearch(self.es_conn_config)
         try:
